@@ -1,4 +1,5 @@
 <?php
+//Session::get('message');
 /**
  * Created by PhpStorm.
  * User: jaredbass
@@ -13,6 +14,10 @@
     <title>Document</title>
 </head>
 <body>
+
+<h1>
+    <?php echo session('message'); ?>
+</h1>
 
 <form action="results" method="get">
 Title: <input type="text" name ="title">
@@ -43,6 +48,19 @@ Title: <input type="text" name ="title">
     <?php  endforeach; ?>
     </select>
     <input type="submit" value="submit">
+   <br><br> Genres: <br>
+<?php
+
+    foreach ($listOfGenres as $list) :
+
+    ?>
+
+    <a href="genres?genre=<?php echo $list?>"><?php
+    echo $list?></a>
+        <br>
+
+
+    <?php  endforeach; ?>
 
 </form>
 
