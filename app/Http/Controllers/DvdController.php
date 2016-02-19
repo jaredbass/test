@@ -11,8 +11,8 @@ use App\Http\Controllers\Controller;
 use DB;
 use Validator;
 use App\Genre;
-use App\Label;
-use App\Sound;
+use App\label;
+use App\sound;
 use App\Rating;
 use App\Format;
 use Redirect;
@@ -168,22 +168,83 @@ class DvdController extends Controller
 
 
 
-    public function create() {
+
+
+    public function create(Request $request) {
+
+
+
+//        if ($validation->fails()){
+//            return Redirect::back()
+//                ->withInput()
+//                ->withErrors($validation);
+//        }
+
         $genres = Genre::lists('genre_name', 'id');
         $label = Label::lists('label_name', 'id');
-        $sound = Sound::lists('sound_name', 'id');
+        $sounds = Sound::lists('sound_name', 'id');
         $rating = Rating::lists('rating_name', 'id');
         $format = Format::lists('format_name', 'id');
 
-//        return View::make('dvds.create')
-//            ->with('genres', $genres)
-//            ->with('label', $label)
-//            ->with('sound', $sound)
-//            ->with('rating', $rating)
-//            ->with('format', $format);
-return View('dvds.create', compact('genres'), compact('label'), compact('sound'), compact('rating'), compact('format'));
+
+
+        return View::make('dvds.create')
+            ->with('genres', $genres)
+            ->with('label', $label)
+            ->with('sounds', $sounds)
+            ->with('rating', $rating)
+            ->with('format', $format);
+
+
+
+//return View('dvds.create', compact('genres'), compact('sounds'), compact('label'), compact('rating'), compact('format'));
 
             }
+
+    public function store2(Request $request){
+
+//            $id = $request->input('id');
+
+
+        $validation =Validator::make($request->all(),[
+            'Title' => 'required',
+            'genre' => 'required',
+            'sound' => 'required',
+            'label' => 'required',
+            'rating' => 'required',
+            'format' => 'required'
+
+        ]);
+
+        if ($validation->fails()){
+            return Redirect::back()
+                ->withInput()
+                ->withErrors($validation);
+        }
+        $dvd = new Dvd;
+        $dvd->title ='Title';
+        $dvd->genre_id ='genre';
+        $dvd->sound_id ='sound';
+        $dvd->label_id ='label';
+        $dvd->rating_id ='rating';
+        $dvd->format_id ='format';
+        $dvd->save();
+//
+//        DB::table('dvds')->insert([
+//            'title' => $request->input('title'),
+//            'genre_id' => $request->input('genre'),
+//            'sound_id' => $request->input('sound'),
+//            'label_id' => $request->input('label'),
+//            'rating_id' => $request->input('rating'),
+//            'format_id' => $request->input('format')
+//
+//        ]);
+        return Redirect::back()->with('success', true);
+//            $review = new Review([
+//                ''
+//            ])
+
+    }
 
     public function storeDVD(Request $request){
 
@@ -213,23 +274,7 @@ return View('dvds.create', compact('genres'), compact('label'), compact('sound')
 //        dd($genre);
 
         $dvds = DVD::with('rating', 'genre', 'label')->get();
-//        $dvds = Dvd::all();
 
-
-//        $dvds = DB::table('dvds')
-//            ->select('dvds.id','title', 'rating_name', 'genre_name', 'label_name', 'sound_name', 'format_name')
-////            ->leftJoin('title', 'dvds.title_id', '=', 'title.id')
-//            ->leftJoin('ratings', 'rating_id', '=', 'ratings.id')
-//            ->leftJoin('genres', 'genre_id', '=', 'genres.id')
-//            ->leftJoin('labels', 'label_id', '=', 'labels.id')
-//            ->leftJoin('sounds', 'sound_id', '=', 'sounds.id')
-//            ->leftJoin('formats', 'format_id', '=', 'formats.id')
-//            ->where('genre_name', 'like', "$genre")
-////            ->where(function($query)use($rating,$genre){
-//                if($rating != '0'){ $query->where('rating_name', 'like', "$rating"); }
-//                if($genre != '0') { $query->where('genre_name', 'like', "$genre"); }
-//            })
-//            ->get();
 
 
         return view('dvds.genres', compact('dvds'), compact('genre'));

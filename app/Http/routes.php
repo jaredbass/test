@@ -30,6 +30,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/dvds/search', 'DvdController@search');
     Route::get('/dvds/results', 'DvdController@results');
     Route::get('/dvds/create', 'DVDController@create');
+    Route::post('/dvds/create', 'DVDController@store2');
     Route::get('/dvds/genres', 'DVDController@genres');
     Route::get('/reviews/new', 'DvdController@reviews');
     Route::get('/dvds/index', 'DvdController@index');

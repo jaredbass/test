@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sound extends Model
 {
-    protected $table = 'sounds';
+
 //    protected $table = array('genres');
 
     public function dvds(){

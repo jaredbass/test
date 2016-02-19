@@ -18,4 +18,13 @@ class Dvd extends Model
     public function rating(){
         return $this->belongsto('App\Rating');
     }
+
+    public function sound(){
+        return $this->belongsto('App\Sound');
+
+    }
+    public function format(){
+        return $this->belongsto('App\Format');
+
+    }
 }
