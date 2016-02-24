@@ -11,6 +11,20 @@
 |
 */
 
+Route::group(['prefix' => 'api/v1', 'namespace' => 'API'], function(){
+   Route::get('dvds', 'DvdController@index');
+    Route::get('dvds/{id}', 'DvdController@show');
+    Route::get('genres', 'DvdController@genres');
+    Route::get('genres/{id}', 'DvdController@showGenre');
+
+    Route::post('dvds', 'DvdController@store');
+
+});
+
+
+
+
+
 Route::get('/', function () {
     return view('welcome');
 });
