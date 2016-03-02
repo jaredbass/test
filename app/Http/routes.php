@@ -11,6 +11,8 @@
 |
 */
 
+use App\Services\API\Spotify;
+
 Route::group(['prefix' => 'api/v1', 'namespace' => 'API'], function(){
    Route::get('dvds', 'DvdController@index');
     Route::get('dvds/{id}', 'DvdController@show');
@@ -20,6 +22,23 @@ Route::group(['prefix' => 'api/v1', 'namespace' => 'API'], function(){
     Route::post('dvds', 'DvdController@store');
 
 });
+
+//try ids like 6G9fHYDCoyEErUkHrFYfs4 or 0sNOF9WDwhWunNAHPD3Baj
+Route::get('/spotify/{albumid}', function ($albumid){
+    $spotify = new Spotify([
+        'clientID' => '71b69dc21d6a474f89d99dc5c300dc9a'
+    ]);
+
+$tracks = $spotify->tracks("$albumid");
+    // why does this not work?: $tracks = $spotify->tracks("https://api.spotify.com/v1/albums/$albumid");
+return view('spotify', [
+    'tracks' => $tracks
+]);
+//    dd($tracks);
+//return Response::json($tracks);
+
+});
+
 
 
 
