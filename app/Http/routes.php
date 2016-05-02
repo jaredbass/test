@@ -13,15 +13,7 @@
 
 use App\Services\API\Spotify;
 
-Route::group(['prefix' => 'api/v1', 'namespace' => 'API'], function(){
-   Route::get('dvds', 'DvdController@index');
-    Route::get('dvds/{id}', 'DvdController@show');
-    Route::get('genres', 'DvdController@genres');
-    Route::get('genres/{id}', 'DvdController@showGenre');
 
-    Route::post('dvds', 'DvdController@store');
-
-});
 
 //try ids like 6G9fHYDCoyEErUkHrFYfs4 or 0sNOF9WDwhWunNAHPD3Baj
 Route::get('/spotify/{albumid}', function ($albumid){
@@ -60,13 +52,25 @@ Route::get('/', function () {
 */
 
 Route::group(['middleware' => ['web']], function () {
-    Route::get('/dvds/search', 'DvdController@search');
-    Route::get('/dvds/results', 'DvdController@results');
-    Route::get('/dvds/create', 'DVDController@create');
-    Route::post('/dvds/create', 'DVDController@store2');
-    Route::get('/dvds/genres', 'DVDController@genres');
-    Route::get('/reviews/new', 'DvdController@reviews');
-    Route::get('/dvds/index', 'DvdController@index');
-    Route::post('/reviews', 'DvdController@store');
+
+    Route::get('/home', 'FinalPortfolio@search');
+    Route::get('/results', 'FinalPortfolio@results');
+    Route::get('/admin', 'FinalPortfolio@admin');
+    Route::post('/admin', 'FinalPortfolio@signup');
+    Route::post('/profile', 'FinalPortfolio@profile');
+    Route::get('/entry', 'FinalPortfolio@entry');
+    Route::get('/add', 'FinalPortfolio@add');
+    Route::get('{username}/edit/{project}/', 'FinalPortfolio@edit');
+    Route::get('{username}/delete/{project}/', 'FinalPortfolio@delete');
+    Route::get('change/{username}/', 'FinalPortfolio@change');
+    Route::post('/update/{username}/', 'FinalPortfolio@update');
+    Route::get('/music', 'FinalPortfolio@music');
+    Route::get('/add/{username}', 'FinalPortfolio@add');
     //
+});
+
+Route::group(['middleware' => 'web'], function () {
+
+
+    Route::get('/home2', 'HomeController@index');
 });
