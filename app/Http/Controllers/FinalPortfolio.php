@@ -204,7 +204,8 @@ class FinalPortfolio extends Controller
         Main::find($title)->delete();
 
 //        Session::flash('message', "Delected succesfully!");
-        return Redirect::back()->with('success', true);
+        return redirect('/home')->
+        with('delete', 'Deleted!');
 
     }
 

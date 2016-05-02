@@ -2,9 +2,7 @@
 @section('search_results')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js">
     </script>
-@if (session('success'))
-    <p> Entry Successfully Deleted!</p>
-@endif
+
 
 
 
@@ -27,7 +25,7 @@ Welcome, delete or edit what you'd like!
 
                 <input type="submit" value="See More">
                 <input type="hidden" name="title" value="{{ $result->id }}">
-                <a href="/{{$username}}/delete/{{$result->id}}"> Delete </a>
+                <a href="/home"> Delete </a>
                 <a href="/{{$username}}/edit/{{$result->id}}"> Edit </a>
 
                 <!---->

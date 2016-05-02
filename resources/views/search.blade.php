@@ -6,6 +6,7 @@
 
 {{ session('message') }}
     {{ session('msg') }}
+    {{session('delete')}}
 
 <a href="/admin">Administrator?</a>
 <a id = "music" href="/music" style="float:right;">Check out my favorite music</a>
