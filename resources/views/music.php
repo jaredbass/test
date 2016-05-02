@@ -300,7 +300,7 @@
 <body>
 
 <div class="shape-left">
-    <a href="/spotify/13Wrdjrb8wrDh1EKKqc4Y6"><div id="one" style="background-color:orangered;  background-size:130%;"> </div></a>
+    <a id="first" href="/spotify/13Wrdjrb8wrDh1EKKqc4Y6"><div id="one" style="background-color:orangered;  background-size:130%;"> </div></a>
    <a href="/spotify/5VqGGKeWpIBRFh4M4XmqDK"> <div id="two" style="background-color:darkolivegreen; background-size:160%;"></div></a>
    <a href="/spotify/7EJf2RoD8f2Tm7hzpwK4bQ"> <div id="three" style="background-color:cornflowerblue; background-size:130% "></div></a>
   <a href="/spotify/1bt6q2SruMsBtcerNVtpZB">  <div id="four" style="background-color:mediumpurple; background-size:130%;"></div></a>

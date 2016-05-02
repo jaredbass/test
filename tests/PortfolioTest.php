@@ -24,8 +24,12 @@ class BookTest extends TestCase
 //            ->dontSee('Administrator');
     }
 
-    public function testDB(){
-        $this->seeInDatabase('mains', ['id' => 'Angola']);
+    public function testAPI(){
+        $this->visit('/home')
+            ->click('music')
+            ->seePageIs('/music')
+            ->click('first')
+            ->seePageIs('/spotify/13Wrdjrb8wrDh1EKKqc4Y6');
     }
 
     public function testButton()
